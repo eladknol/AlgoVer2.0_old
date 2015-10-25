@@ -1,0 +1,114 @@
+function resStruct = getECGStruct4secout_CODR_INIT()
+
+tempStr = struct('bestLead', -1, 'bestLeadPeaks', -1, 'leadsInclude', [-1 -1], 'pos', [-1 -1], 'rel', -1);
+tempstr1 = getECGconfig(1000);
+tempstr2 = tempstr1.fQRS;
+tempstr2.Fs= 0;
+tempstr2.procType= 0;
+tempstr2.nNumOfChs= 0;
+tempstr2.useStats= false(1);
+tempstr2.usePar= false(1);
+
+metaData.Filename= 'AAAAAAAAAAAAA.aaa';
+metaData.Date= '00-00-0000  00:00:00';
+metaData.Testplace= 'MODIIN';
+metaData.Recordedby= 'AAAA';
+metaData.SubjectID= 'AA0000';
+metaData.Age= 0;
+metaData.Weightbeforepregnancy= 0;
+metaData.heightcm= 0;
+metaData.BMIbeforepregnancy= 0;
+metaData.Weightgainduringpregnancy= 0;
+metaData.Weekofpregnancy= 0;
+metaData.Sex= 'Female';
+metaData.SubjectHeartrate= 0;
+metaData.Bloodpressure= 'SYSTOLE 000    |     DIASTOLE 00';
+metaData.Waistsizecm= 'UP 000    |    Waist size (cm)= Middle 000 …';
+metaData.distance_B1B3= 0;
+metaData.distance_B2B4= 0;
+metaData.distance_BbB1= 0;
+metaData.distance_BbB2= 0;
+metaData.distance_BbB3= 0;
+metaData.distance_BbB4= 0;
+metaData.distance_BbA1= 0;
+metaData.distance_BbA2= 0;
+metaData.distance_BbA3= 0;
+metaData.distance_BbA4= 0;
+metaData.Subjectposition= 'Lying';
+metaData.Placentalocation= 'Posterior';
+metaData.Fetusorientation= 'Cephalic - back, right side';
+metaData.FetalHeartratedetection= 'B3';
+metaData.DeviceID= 'BIOPAC';
+metaData.Samplerate= 0;
+metaData.Bits= 0;
+metaData.BiopacECGHP= 0;
+metaData.BiopacECGLP= 0;
+metaData.BiopacMICHP= 0;
+metaData.BiopacMICLP= 0;
+metaData.Dataformat= 'double';
+metaData.MICROPHONESMAPPING= '0.0- ALU_36/5_PRIMO158_cap1_gold_standard,1…';
+metaData.SensortypeCH1= 'AAA , AA';
+metaData.SensorlocationCH1= 'A0 - A0';
+metaData.GainCH1= 0;
+metaData.SensortypeCH2= 'AAA , AA';
+metaData.SensorlocationCH2= 'A0 - A0';
+metaData.GainCH2= 0;
+metaData.SensortypeCH3= 'AAA , AA';
+metaData.SensorlocationCH3= 'A0 - A0';
+metaData.GainCH3= 0;
+metaData.SensortypeCH4= 'AAA , AA';
+metaData.SensorlocationCH4= 'A0 - A0';
+metaData.GainCH4= 0;
+metaData.SensortypeCH5= 'AAA , AA';
+metaData.SensorlocationCH5= 'A0 - A0';
+metaData.GainCH5= 0;
+metaData.SensortypeCH6= 'AAA , AA';
+metaData.SensorlocationCH6= 'A0 - A0';
+metaData.GainCH6= 0;
+metaData.SensortypeCH7= 'AAA , Electret , 13.1 , cap';
+metaData.SensorlocationCH7= 'A0';
+metaData.GainCH7= 0;
+metaData.SensortypeCH8= 'AAA , Electret , 13.2 , cap';
+metaData.SensorlocationCH8= 'A0';
+metaData.GainCH8= 0;
+metaData.SensortypeCH9= 'AAA , Electret , 13.3 , cap';
+metaData.SensorlocationCH9= 'A0';
+metaData.GainCH9= 0;
+metaData.SensortypeCH10= 'AAA , Electret , 13.4 , cap';
+metaData.SensorlocationCH10= 'A0';
+metaData.GainCH10= 0;
+metaData.File= 'AAAAAAAAAAAAA.aaa';
+metaData.Comments= 'ASASASASASASASASASASAS';
+metaData.ECGchannels= [0 0 0 0 0 0];
+metaData.MICchannels= [0 0 0 0];
+metaData.ChannelsTypes= repmat(struct('value', 'AAA'), 1, 10);
+metaData.satLevel= 0;
+metaData.Fs= 0;
+metaData.nNumOfChannels= 0;
+metaData.channelType= repmat(struct('value', 'AAA'), 1, 10);
+
+resStruct.mQRS.mQRS_struct = tempStr;
+resStruct.removeStruct = struct('filtData', [-1 -1;-1 -1], 'matData', [-1 -1;-1 -1], 'mQRS_struct', tempStr, 'fetData', [-1 -1;-1 -1], ...
+    'relRemEng', [-1 -1], 'noisyBeatFlag', -1, 'metaData', metaData);
+
+fetSignal = -ones(1, 20);
+leadsInclude = false(6, 1);
+scrVec = zeros(10,1);
+inds = zeros(10, 1);
+HR = zeros(10, 1);
+fQRSPos = zeros(10, 1);
+fQRS = zeros(1, 10);
+info = 'this is only an info';
+coder.varsize('fetSignal', [1 20], [0 1]);
+coder.varsize('leadsInclude', [6 1], [1 0]);
+coder.varsize('scrVec', [10 1], [1 1]);
+coder.varsize('inds', [10 1], [1 0]);
+coder.varsize('HR', [10 1], [1 0]);
+coder.varsize('info', [1 50], [0 1]);
+coder.varsize('fQRSPos', [10 1], [1 0]);
+coder.varsize('fQRS', [1 10], [0 1]);
+
+resStruct.fQRS_struct = struct( 'bestLeadPeaks', -1, 'bestLead', -1, 'bestPreProcLead',-1,  'fetSignal', fetSignal, 'leadsInclude', leadsInclude, ...
+    'metaData', struct('Fs', -1), 'calcConfig', tempstr2, 'info', info, 'fQRSPos', fQRSPos, 'fQRS', fQRS, 'scoring', struct('scrVec', scrVec, 'globalScore', -1, 'bestWindow', struct('inds', inds,...
+    'HR', HR, 'score', -1, 'valid', -1)));
+
