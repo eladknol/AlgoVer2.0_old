@@ -13,7 +13,21 @@ if(ischar(input)) % The first input is a char array, assume it is the file name
     switch(ext)
         case {'.mat', 'mat'},
             fileCont = load(input);
-            fileCont = -2;
+            siz = size(fileCont.data);
+            if(siz(1)>siz(2)) % Auto transfer the data if it is NxL to
+                fileCont.data = fileCont.data';
+            end
+            fileCont.meta.satLevel = 10;
+            fileCont.meta.Samplerate = 1000;
+            fileCont.meta.ChannelsTypes = repmat(struct('value', 'AAA'), 1, min(siz));
+            for i=1:6
+                fileCont.meta.ChannelsTypes(i).value = 'ECG';
+            end
+            fileCont.meta.Age = 27;
+            fileCont.meta.SubjectID = 'AA0000';
+            fileCont.meta.BMIbeforepregnancy = 0;
+            fileCont.meta.Weekofpregnancy = 0;
+            
             return;
         case {'.edf', 'edf'},
             [edf.meta, edf.data] = edfread(input);
