@@ -1,0 +1,158 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>main_sample_function</title><meta name="generator" content="MATLAB 7.11.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-04-17"><meta name="DC.source" content="main_sample_function.m"><style type="text/css">
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows. */ 
+p,h1,h2,div.content div {
+  max-width: 600px;
+  /* Hack for IE6 */
+  width: auto !important; width: 600px;
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+@media print {
+  pre.codeinput {word-wrap:break-word; width:100%;}
+} 
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">main_sample_function</a></li><li><a href="#2">sample_one</a></li><li><a href="#3">sample_two</a></li></ul></div><h2>main_sample_function<a name="1"></a></h2><pre class="codeinput"><span class="keyword">function</span> main_sample_function
+<span class="comment">%MAIN_SAMPLE_FUNCTION Summary of this function goes here</span>
+<span class="comment">% This is a demo to show how the "publish_all_functions" works.</span>
+
+<span class="comment">% Call the first function.</span>
+sample_one
+<span class="comment">% Call the second function.</span>
+sample_two
+
+<span class="comment">% Done.</span>
+disp(<span class="string">'Mission Accomplished!!!'</span>);
+
+<span class="keyword">end</span>
+</pre><h2>sample_one<a name="2"></a></h2><pre class="codeinput"><span class="keyword">function</span> sample_one
+<span class="comment">%SAMPLE_ONE Summary of this function goes here</span>
+<span class="comment">%   Detailed explanation goes here</span>
+
+<span class="comment">% It is a sample function one. :)</span>
+
+disp(<span class="string">'We are here in sample function one!!!'</span>);
+x = -pi:.1:pi;
+y = sin(x);
+plot(x,y);
+
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">We are here in sample function one!!!
+</pre><img vspace="5" hspace="5" src="main_sample_function_01.png" alt=""> <h2>sample_two<a name="3"></a></h2><pre class="codeinput"><span class="keyword">function</span> sample_two
+<span class="comment">%SAMPLE_TWO Summary of this function goes here</span>
+<span class="comment">%   Detailed explanation goes here</span>
+
+<span class="comment">% It is a sample function two. :)</span>
+
+disp(<span class="string">'We are here in sample function two!!!'</span>);
+t = 0:pi/10:2*pi;
+plot(exp(i*t),<span class="string">'-o'</span>);
+axis <span class="string">equal</span>;
+
+
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">We are here in sample function two!!!
+Mission Accomplished!!!
+</pre><img vspace="5" hspace="5" src="main_sample_function_02.png" alt=""> <p class="footer"><br>
+      Published with MATLAB&reg; 7.11.1<br></p></div><!--
+##### SOURCE BEGIN #####
+%% main_sample_function
+function main_sample_function
+%MAIN_SAMPLE_FUNCTION Summary of this function goes here
+% This is a demo to show how the "publish_all_functions" works.
+
+% Call the first function.
+sample_one
+% Call the second function.
+sample_two
+
+% Done.
+disp('Mission Accomplished!!!');
+
+end
+
+
+%% sample_one
+function sample_one
+%SAMPLE_ONE Summary of this function goes here
+%   Detailed explanation goes here
+
+% It is a sample function one. :)
+
+disp('We are here in sample function one!!!');
+x = -pi:.1:pi;
+y = sin(x);
+plot(x,y);
+
+end
+
+
+%% sample_two
+function sample_two
+%SAMPLE_TWO Summary of this function goes here
+%   Detailed explanation goes here
+
+% It is a sample function two. :)
+
+disp('We are here in sample function two!!!');
+t = 0:pi/10:2*pi;
+plot(exp(i*t),'-o');
+axis equal;
+
+
+end
+
+
+
+##### SOURCE END #####
+--></body></html>
