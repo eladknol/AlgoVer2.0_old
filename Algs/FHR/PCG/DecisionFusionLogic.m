@@ -38,7 +38,11 @@ outStruct.patID=inputStruct.meta.SubjectID;
 outStruct.unqID='thisistheunqfileiddd';
 outStruct.resData=struct;
 if DetectionType ==1
-    [res, secOut, outStructECG] = analyzeSingleECGRecord(inputStruct); % Get detection from ECG
+    
+%     [res, secOut, outStructECG] = analyzeSingleECGRecord(inputStruct); % Get detection from ECG
+inputStructECG=inputStruct;
+inputStructECG.data=inputStructECG.data';
+[res, secOut, outStructECG] = analyzeFECGInterval(inputStructECG);
     if ~isempty(secOut)
         % Channel=secOut.fQRS_struct.bestLeadPeaks;
         % ECGOut.FetSig=secOut.removeStruct.fetData(Channel,:);

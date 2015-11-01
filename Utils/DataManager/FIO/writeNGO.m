@@ -27,7 +27,7 @@ if(isempty(path))
 end
 ext = '.ngo';
 outFileName = [path '\' fileName ext];
-
+mkdir(path);
 fid = fopen(outFileName, 'Wb');
 
 if(fid<=0)
@@ -85,7 +85,7 @@ if(isfield(inStruct, 'patID'))
         error(['Maximum length of the field patID is ' num2str(patIDMaxLen) ' chars.']);
     end
 else
-    flds2Write.val.patID = repmat('a', 1, patIDMaxLen);
+    flds2Write.val.patID = 'aaaaaaa';
 end
 flds2Write.type.patID  = '*char';
 
@@ -127,7 +127,11 @@ end
 
 % Fields types
 for ii=1:nNumOfFlds
-    flds.types{ii} = class(inStruct.resData.(flds.names{ii}));
+%     flds.types{ii} = class(inStruct.resData.(flds.names{ii}));
+    
+%     flds.types{ii} = class(inStruct.resData.(flds.names{ii}));
+    flds.types{ii} = class(inStruct.resData(1).(flds.names{ii}));
+    
 end
 
 for ii=1:nNumOfFlds
@@ -137,15 +141,30 @@ for ii=1:nNumOfFlds
 end
 
 % Fields sizes
-for ii=1:nNumOfFlds
-    fwrite(fid, int32(length(inStruct.resData.(flds.names{ii}))), 'int32');
-end
+% for ii=1:nNumOfFlds
+%     fwrite(fid, int32(length(inStruct.resData(1).(flds.names{ii}))), 'int32');
+% end
 
 % Actual data to write
-for ii=1:nNumOfFlds
-    fwrite(fid, inStruct.resData.(flds.names{ii}), flds.types{ii});
+% for ii=1:nNumOfFlds
+%     fwrite(fid, inStruct.resData.(flds.names{ii}), flds.types{ii});
+% end
+% for ii=1:nNumOfFlds
+%     fwrite(fid, inStruct.resData(1).(flds.names{ii}), flds.types{ii});
+% Number of Signal Frames
+nNumOfFrames=length(inStruct.resData);
+fwrite(fid, int16(nNumOfFrames), 'int16');
+for jj=1:nNumOfFrames
+    % Fields sizes
+    for ii=1:nNumOfFlds
+        fwrite(fid, int32(length(inStruct.resData(jj).(flds.names{ii}))), 'int32');
+    end
+    
+    % Actual data to write
+    
+    for ii=1:nNumOfFlds
+        fwrite(fid, inStruct.resData(jj).(flds.names{ii}), flds.types{ii});
+    end
 end
-
-
 %% Finalize
 fclose(fid);
