@@ -22,12 +22,9 @@ if ~isfield(inputStruct,'meta')
     error('No meta data availble, check inputStruct');
 elseif ~isfield(inputStruct, 'data')
     error('No data availble, check inputStuct');
-else
-    inputStruct.meta.satLevel = 10;
+% else
+%     inputStruct.meta.satLevel = 10;
 end
-
-
-
 
 Fs=inputStruct.meta.Samplerate;
 outStruct.analysisType=-1;
@@ -40,16 +37,17 @@ outStruct.resData=struct;
 if DetectionType ==1
     
 %     [res, secOut, outStructECG] = analyzeSingleECGRecord(inputStruct); % Get detection from ECG
-inputStructECG=inputStruct;
-inputStructECG.data=inputStructECG.data';
-[res, secOut, outStructECG] = analyzeFECGInterval(inputStructECG);
-    if ~isempty(secOut)
-        % Channel=secOut.fQRS_struct.bestLeadPeaks;
-        % ECGOut.FetSig=secOut.removeStruct.fetData(Channel,:);
-        ECGOut.FetSig=secOut.fQRS_struct.fetSignal;
-    else
-        ECGOut.FetSig=999;
-    end
+% inputStructECG=inputStruct;
+% inputStructECG.data=inputStructECG.data';
+[res, secOut, outStructECG] = analyzeFECGInterval(inputStruct);
+    
+if res ~= -1
+    % Channel=secOut.fQRS_struct.bestLeadPeaks;
+    % ECGOut.FetSig=secOut.removeStruct.fetData(Channel,:);
+    ECGOut.FetSig=secOut.fQRS_struct.fetSignal;
+else
+    ECGOut.FetSig=999;
+end
 else
     outStructECG=[];
     ECGOut.FetSig=999;
