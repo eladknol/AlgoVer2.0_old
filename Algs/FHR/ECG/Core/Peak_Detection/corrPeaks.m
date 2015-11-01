@@ -48,7 +48,7 @@ end
 %     group = group(:);
 % end
 
-[group, C] = kMedoids(peaksVals, nG, nG+1, true(1));
+[group, C] = kMedoids(peaksVals, nG, nG+1, false(1));
 
 md = 0;
 md = abs(median(C));
@@ -88,7 +88,7 @@ elseif(sm == nG-2) % two clusters are close, reduce the number of cluster and re
     %         group = group(:);
     %     end
     
-    [group, C] = kMedoids(peaksVals, nG, 1, true(1));
+    [group, C] = kMedoids(peaksVals, nG, 1, false(1));
 else
     
 end

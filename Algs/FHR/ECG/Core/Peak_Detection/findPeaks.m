@@ -71,25 +71,11 @@ if(length(procSig)>winLen)
     if(length(numPeaks)>nG)
         
         % kMedoids uses targeting
-        [group, C] = kMedoids(numPeaks', nG, nG+1, true(1)); % more robust to outlairs than k-means
-        
-        % #CODER_REMOVE
-        %         if(config.useStats) % use matlab's functions if toolbox is avavaiable
-        %             [group, C] = kmedoids(numPeaks', nG, 'Replicates', nG+1); % more robust to outlairs than k-means
-        %             %[group, C] = kmeans(numPeaks', 3); % if you use it remove outlairs first
-        %         else
-        %             [group, C] = kmedoids_ext(numPeaks, nG);
-        %             group = group(:);
-        %             C = C(:);
-        %             %[group, C] = k_means(numPeaks, 3);  % use a simple provided function. $TBC
-        %             % if you use it remove outlairs first
-        %         end
+        [group, C] = kMedoids(numPeaks', nG, nG+1, false(1)); % more robust to outlairs than k-means
         
         [cntSort, i] = sort(C);
         pksDiff = abs(diff(cntSort))>0.3*cntSort(2);
         if(any(pksDiff))
-            %warning('check code here for ==');
-            %GRP = find(C==cntSort([pksDiff(1) 0 pksDiff(2)]>0));
             
             coder.varsize('GRP', [10 1], [1 0]); % #CODER_VARSIZE
             GRP = 0;
@@ -97,12 +83,6 @@ if(length(procSig)>winLen)
             if(~isempty(cntSort([pksDiff(1) 0 0]>0)))
                 GRP = find(C==cntSort([pksDiff(1) 0 0]>0));
             end
-            
-            %             if(isempty(cntSort([pksDiff(1) 0 0]>0)))
-            %                 GRP = 0;
-            %             else
-            %                 GRP = find(C==cntSort([pksDiff(1) 0 0]>0));
-            %             end
             
             % find peaks again for this group
             if(length(GRP)==1 && all(GRP==0))
@@ -150,44 +130,6 @@ if(length(procSig)>winLen)
                     end
                 end
             end
-            
-            %             for grp = GRP
-            %                 for iWin = find(group == grp)'
-            %                     ind = 1 + (iWin-1)*winLen : iWin*winLen;
-            %                     if(C(grp)<C(i(2)))
-            %                         % Few peaks have been detected
-            %                         % The main reason for this issue is very high spikes...
-            %                         % Try increase the small peaks by applying AGC
-            %                         % This could be dangrous in the case that there are no peaks at all.
-            %                         cfg.isNorm = 1;
-            %                         sig = winAGC(procSig(ind), cfg, C(i(2)));
-            %                         [peaksVals, Inds] = findpeaks(sig,'MINPEAKDISTANCE',minDst,'MINPEAKHEIGHT',minPeakH);
-            %                         numPksNew = length(Inds);
-            %                         if(abs(numPksNew-C(i(2)))<0.3*C(i(2)))
-            %                             % Cool, worth the shot!
-            %                             % Remove old peaks in this window and add the new ones
-            %                             bfr = sum(numPeaks(1:iWin-1));
-            %                             indRmv = bfr+1:bfr+1+numPeaks(iWin)-1;
-            %                             peaksInd(indRmv) = [];
-            %                             if(iWin==1)
-            %                                 peaksInd = [Inds peaksInd];
-            %                             elseif(iWin==nNumOfWins)
-            %                                 Inds = Inds + (iWin-1)*winLen;
-            %                                 peaksInd = [peaksInd Inds];
-            %                             else
-            %                                 Inds = Inds + (iWin-1)*winLen;
-            %                                 peaksInd = [peaksInd(1:bfr) Inds'-1 peaksInd(bfr+1:end)];
-            %                             end
-            %                             numPeaks(iWin) = numPksNew;
-            %                         else
-            %                             % Never mind, don't use the new peaks
-            %                         end
-            %                     else % a lot of peaks have been detected
-            %                         %do nothing maybe...
-            %                     end
-            %                 end
-            %             end
-            % For max val:
         end
     end
 else

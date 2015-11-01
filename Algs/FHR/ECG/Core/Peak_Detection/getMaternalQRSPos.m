@@ -22,14 +22,11 @@ global configProvider;
 signals = matDetectorStruct.signals;
 filtSignals = matDetectorStruct.filtSignals;
 config = matDetectorStruct.config;
-% chnlInclude = matDetectorStruct.chnlInclude;
-%clear detectorStruct varargin;
 mQRS_struct.err = false(1);
+
 %% Find the R waves and kill them
-%[R_Waves.FNL, RelValidSigs.FNL, bestLead, bestLeadPeaks, leadsInclude] = getRWaves(signals, 'final', config);
 
 [R_Waves.FNL, RelValidSigs.FNL, bestLead, bestLeadPeaks, leadsInclude] = findMatRWaves(signals, config);
-
 counter = 0;
 for i=1:numel(R_Waves.FNL)
     if(length(R_Waves.FNL(i).value) == 1 && R_Waves.FNL(i).value(1) == -1)
@@ -57,34 +54,8 @@ if(counter == config.nNumOfChs || RelValidSigs.FNL<=0)
     filtersConfig.auto_filt.ecg.power.active = false(1);
     
     [~, signals_new] = doFilter(filtersConfig, Out1);
-    %signals_new = applyFilter('BSLN', Out1, configNew); % Apply the baseline removal after applying ICA (in case that you are using median)
-    % #CODER_REMOVE
-    %[R_Waves.FNL, RelValidSigs.FNL, bestLead, bestLeadPeaks, leadsInclude]= getRWaves(signals_new, 'final', configNew);
     [R_Waves.FNL, RelValidSigs.FNL, bestLead, bestLeadPeaks, leadsInclude] = findMatRWaves(signals_new, configNew);
 end
-
-% CODER_REMOVE
-% if((~iscell(R_Waves.FNL) && R_Waves.FNL==-1) || RelValidSigs.FNL<=0)
-%     icaSigs = filtSignals; % Make sure that 'icaSigs' is the signals without median filtering
-%
-%     [Out1, Out2, Out3] = fastica(icaSigs, 'g', 'tanh', 'verbose', 'off');
-%     config.forceDetect = 1;
-%     config.relMaternalPeaksEnergy = 0.6; % lower it!
-%     signals_new = applyFilter('BSLN', Out1); % Apply the baseline removal after applying ICA (in case that you are using median)
-%     [R_Waves.FNL, RelValidSigs.FNL, bestLead, bestLeadPeaks, leadsInclude]= getRWaves(signals_new, 'final', config);
-% end
-
-% #CODER_TEST
-% if(isfield(RelValidSigs,'FNL'))
-%     if(RelValidSigs.FNL<=0)
-%         R_Waves.direct = getRWaves(signals, 'direct', config);
-%     end
-% end
-
-% flds = fields(R_Waves);
-% for i=1:length(flds)
-%     pks{i} = R_Waves.(flds{i});
-% end
 
 pks = R_Waves.FNL; % Keep it like that for now
 
@@ -92,7 +63,6 @@ mQRS_struct.bestLead = bestLead;
 mQRS_struct.bestLeadPeaks = bestLeadPeaks;
 mQRS_struct.leadsInclude = leadsInclude;
 
-% disp('Performing maternal QRS examination...');
 [mQRS_struct.pos, mQRS_struct.rel] = examineMaternalPeaks(pks, signals, bestLead, bestLeadPeaks, leadsInclude);
 
 if(isempty(mQRS_struct.pos) || mQRS_struct.rel==0)
