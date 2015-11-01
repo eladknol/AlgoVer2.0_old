@@ -18,30 +18,31 @@ function mQRS_struct = getMaternalQRSPos(matDetectorStruct)
 % so you cannot assume anything about it!!! - if you want to use
 % morphology-related detection use the raw data and not the processed data!
 
+%% General - In<->Out
 global configProvider;
-signals = matDetectorStruct.signals;
-filtSignals = matDetectorStruct.filtSignals;
-config = matDetectorStruct.config;
+signals         = matDetectorStruct.signals;
+filtSignals     = matDetectorStruct.filtSignals;
+config          = matDetectorStruct.config;
 mQRS_struct.err = false(1);
 
 %% Find the R waves and kill them
 
 [R_Waves.FNL, RelValidSigs.FNL, bestLead, bestLeadPeaks, leadsInclude] = findMatRWaves(signals, config);
-counter = 0;
-for i=1:numel(R_Waves.FNL)
+
+progTest = 0;
+for i = 1:numel(R_Waves.FNL)
     if(length(R_Waves.FNL(i).value) == 1 && R_Waves.FNL(i).value(1) == -1)
-        counter = counter+1;
+        progTest = progTest+1;
     end
 end
 
-if(counter == config.nNumOfChs || RelValidSigs.FNL<=0)
+if(progTest == config.nNumOfChs || RelValidSigs.FNL<=0)
     icaSigs = filtSignals; % Make sure that 'icaSigs' is the signals without median filtering
     
     Out1 = fastICA(icaSigs, 'tanh');
     configNew = config;
     configNew.forceDetect = true(1);
     configNew.relMaternalPeaksEnergy = 0.6; % lower it!
-    
     
     filtersConfig.auto_filt.ecg = configProvider.ECG_CFG.filters;
     filtersConfig.autoApply = true(1);
