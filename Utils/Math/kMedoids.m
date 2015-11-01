@@ -2,6 +2,16 @@ function [groups, C] = kMedoids(vec, nG, nReps, builtin)
 
 % This is a generic version of the kMedoids algorithm
 
+% Batch for AWS 
+global AWSFLAG;
+if(isempty(AWSFLAG))
+    AWSFLAG = false(1);
+end
+if(AWSFLAG)
+    % Temp solution for the mex issues 
+    builtin = true(1);
+end
+
 if(coder.target('matlab'))
     if(nargin<4)
         builtin = true(1); % use the built in matlab code in the statistics and machine learning toolbox
