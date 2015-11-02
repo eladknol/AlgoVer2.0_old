@@ -58,10 +58,10 @@ ecg_cfg.mTwave.filters.low.Order = 12; % seconds
 ecg_cfg.mECG.minMaternalCorrCoef = 0.8;
 ecg_cfg.mECG.resampleFreq = 4e3;
 ecg_cfg.mECG.CLT.filter.type = 'bandpass';
-coder.varsize('ecg_cfg.mECG.CLT.filter.type', [1 length('bandpass')], [0 1]);
+%coder.varsize('ecg_cfg.mECG.CLT.filter.type', [1 length('bandpass')], [0 1]);
 ecg_cfg.mECG.CLT.filter.order = 100;
 ecg_cfg.mECG.CLT.filter.fc = [5, 20];
-ecg_cfg.mECG.CLT.filter.winsize = 100;
+ecg_cfg.mECG.CLT.filter.winsize = round(100/1000 * sampleRate);
 ecg_cfg.mECG.incCorrCoef = 0.98;
 ecg_cfg.mECG.incNumBeats = 10;
 ecg_cfg.mECG.incBounds = 50;
@@ -79,7 +79,7 @@ ecg_cfg.mECG.LMA.jacbDelta = 0.05;
 ecg_cfg.mECG.LMA.multsSmoother = 15;
 
 ecg_cfg.fECG.ICA.nonLin = 'tanh';
-coder.varsize('ecg_cfg.fECG.ICA.nonLin', [1 length('tanh')], [0 1]);
+%coder.varsize('ecg_cfg.fECG.ICA.nonLin', [1 length('tanh')], [0 1]);
 ecg_cfg.fECG.Gen.RMSWinLen = 100;
 ecg_cfg.fECG.Gen.maLength = 51;
 
@@ -124,4 +124,4 @@ ecg_cfg.fQRS.peakExamination.scoring.closePerc = 10;
 ecg_cfg.fQRS.peakExamination.scoring.minAccCorrCoeff = 0.8;
 
 ecg_cfg.fQRS.nonLin = 'tanh';%ecg_cfg.fECG.ICA.nonLin;
-coder.varsize('ecg_cfg.fQRS.nonLin', [1 length('tanh')], [0 1]);
+%coder.varsize('ecg_cfg.fQRS.nonLin', [1 length('tanh')], [0 1]);

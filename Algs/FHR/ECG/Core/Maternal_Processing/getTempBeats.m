@@ -33,11 +33,11 @@ if(length(starts) ~= length(ends))
     noisyBeatFlag = ones(nNumOfMatPeaks, 1);
     return;
 end
-ind = (ends - starts)>config.reqFs/1000*70;
+ind = (ends - starts)>round(config.reqFs/1000*70);
 
 if(isempty(ind))
-    QRS.onset = -config.reqFs/1000*50;
-    QRS.offset = +config.reqFs/1000*50;
+    QRS.onset = -floor(config.reqFs/1000*50);
+    QRS.offset = +floor(config.reqFs/1000*50);
 else
     pos = [starts(ind), ends(ind)+config.CLT.filter.winsize];
     [y, i] = max(abs(templateECG));
@@ -46,8 +46,8 @@ else
         QRS.onset = pos(1);
         QRS.offset = pos(2);
     else
-        QRS.onset = -config.reqFs/1000*50;
-        QRS.offset = +config.reqFs/1000*50;
+        QRS.onset = -floor(config.reqFs/1000*50);
+        QRS.offset = +floor(config.reqFs/1000*50);
     end
 end
 

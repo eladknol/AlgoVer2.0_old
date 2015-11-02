@@ -271,6 +271,13 @@ while(countExt<maxITI)
             fallInd = [fallInd; length(bin)];
         end
     end
+    
+    countExt = countExt + 1;
+    
+    if(isempty(raiseInd) || isempty(fallInd))
+        continue;
+    end
+    
     if(fallInd(1)<raiseInd(1))
         raiseInd = [1; raiseInd];
         raiseInd(end) = [];
@@ -287,7 +294,6 @@ while(countExt<maxITI)
     [pks, inds] = findpeaks(sig, 'MinPeakHeight', minPeakHeight);
     threshVal = median(scrVec(inds));
     
-    countExt = countExt + 1;
 end
 
 fQRS_struct.scoring.bestWindow.inds = inds;

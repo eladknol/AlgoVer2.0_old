@@ -34,9 +34,7 @@ bin = diff(STD<maxFetalRRInterSTD);
 raiseInd = find(bin==1);
 fallInd = find(bin==-1);
 if(length(raiseInd) ~= length(fallInd))
-    firstRaise = raiseInd(1);
-    firstRaise = raiseInd(1);
-    
+        
     if(isempty(fallInd))
         fallInd = length(bin);
     end
@@ -47,9 +45,10 @@ if(length(raiseInd) ~= length(fallInd))
     if(raiseInd(1) > fallInd(1))
         raiseInd = [1 raiseInd];
     else
-        fallInd = [fallInd length(bin)];
+        if(fallInd(end) <length(bin)-1)
+            fallInd = [fallInd length(bin)];
+        end        
     end
-
 end
 
 [y, i] = max(fallInd - raiseInd);
