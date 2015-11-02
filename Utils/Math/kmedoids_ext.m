@@ -4,9 +4,6 @@ function [clusterID, clusterCenter] = kmedoids_ext(dataVec, nG, nReps)
 % This function should be used for code generation only.
 % If you with to use it, MEX it and then use it.
 
-% coder.extrinsic('disp');
-
-
 ifound = int32(0);
 error = 0;
 coder.varsize('clusterID', [1000, 1], [1 0]); % #CODER_VARSIZE
@@ -45,15 +42,3 @@ end
 
 clusterCenter = dataVec(clusterCenter); % #CODER_VALIDATE, #CODER_TEST
 
-% if(all(clusterCenter~=0))
-%     clusterCenter = dataVec(clusterCenter);
-% else
-% %     clusterIDSave(clusterIDSave==0) = 1;
-%     % something went wrong, try agian
-%     clusterCenter = double(unique(clusterIDSave));
-%     for i=1:length(clusterCenter)
-%         clusterID(clusterIDSave == clusterCenter(i)) = i;
-%     end
-%     clusterCenter = dataVec(clusterCenter);
-% end
-% 
