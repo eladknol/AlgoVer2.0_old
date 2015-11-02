@@ -68,8 +68,8 @@ while flag % Start detection loop on signals
     catch
         %         Frame(n)=[];
         
-        ResStructFrame=[];
-        AudioOut=[];
+%         ResStructFrame=[];
+%         AudioOut=[];
         ECGOut=[];
         return
         
