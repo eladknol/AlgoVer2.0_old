@@ -70,6 +70,7 @@ if(config.usePar)
         peaksEnergy = [peaksEnergy, peaksRelE(i)];
         
         leadsInclude(i) = 1;
+        
     end
 else
     for i = 1:config.nNumOfChs
