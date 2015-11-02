@@ -56,7 +56,8 @@ switch(dataType)
         filtData(satExclude, :) = nan;
         nanPerc = checkNaN(filtData); % make sure to use the filtered data, so the nans will be excluded from the data-to-be processed
         nanExclude = nanPerc>localConfig.maxNaNPerc;
-        filtData(nanExclude, :) = []; % remove NaN channels
+        %filtData(nanExclude, :) = []; % remove NaN channels
+        filtData(nanExclude, :) = nan; % remove NaN channels
         chnlInclude = ~nanExclude;
         if(any(chnlInclude))
             closestElectrode = analyzeEnergy(filtData, localConfig);
