@@ -1,4 +1,4 @@
-function [R_Waves, RelValidSigs, bestLead, bestLeadPeaks, leadsInclude] = findMatRWaves(signals, config)
+function [R_Waves, RelValidSigs, bestLead, bestLeadPeaks, leadsInclude] = findMatRWaves(signals, config, chnlInclude)
 %#codegen
 
 SIZE = size(signals);
@@ -40,70 +40,81 @@ pInd = repmat(struct('value', 1), 6, 1);
 
 if(config.usePar)
     parfor i = 1:config.nNumOfChs
-        %procSig = signals(i,:).*signals(i,:);
-        pInd(i).value = findPeaks(signals(i,:).*signals(i,:), signals(i,:), minDst, config_par_minPeakHeight, 0, 0, Fs, 1, 0, config);% for now, don't classify
-        
-        peaksRelE(i) = -inf(1);
-        % remove bad 'source' signals
-        if(length(pInd(i).value)<minNumOfPeaks || length(pInd(i).value)>maxNumOfPeaks)
-            continue;
+        if(chnlInclude(i))
+            %procSig = signals(i,:).*signals(i,:);
+            pInd(i).value = findPeaks(signals(i,:).*signals(i,:), signals(i,:), minDst, config_par_minPeakHeight, 0, 0, Fs, 1, 0, config);% for now, don't classify
+            
+            peaksRelE(i) = -inf(1);
+            % remove bad 'source' signals
+            if(length(pInd(i).value)<minNumOfPeaks || length(pInd(i).value)>maxNumOfPeaks)
+                continue;
+            end
+            
+            peaksE(i) = getPeaksEnergy(signals(i,:), pInd(i).value);
+            signalE(i) = getSignalEnergy(signals(i,:));
+            if(peaksE(i)>signalE(i))
+                % the energy of the peaks is larger thatn the energy of the signal
+                % this happens when the QRS's of the peaks overlap
+                peaksOnly = 1;
+                peaksE(i) = getPeaksEnergy(signals(i,:), pInd(i).value, peaksOnly);
+                relPeaksEnergy(i) = relPeaksEnergy(i)/10;
+            end
+            peaksRelE(i) = peaksE(i)/signalE(i);
+            if((peaksRelE(i))<relPeaksEnergy(i))
+                continue;
+            end
+            
+            peaks(i).value = getPeaks(signals(i,:), 'corr', pInd(i).value, [],[], config);
+            peaksE(i) = getPeaksEnergy(signals(i,:), peaks(i).value);
+            peaksRelE(i) = peaksE(i)/signalE(i);
+            %peaksEnergy(ind) = peaksRelE(i);
+            peaksEnergy = [peaksEnergy, peaksRelE(i)];
+            
+            leadsInclude(i) = 1;
+        else
+            pInd(i).value = -1;
+            peaksRelE(i) = -inf(1);
+            leadsInclude(i) = 0;
         end
-        
-        peaksE(i) = getPeaksEnergy(signals(i,:), pInd(i).value);
-        signalE(i) = getSignalEnergy(signals(i,:));
-        if(peaksE(i)>signalE(i))
-            % the energy of the peaks is larger thatn the energy of the signal
-            % this happens when the QRS's of the peaks overlap
-            peaksOnly = 1;
-            peaksE(i) = getPeaksEnergy(signals(i,:), pInd(i).value, peaksOnly);
-            relPeaksEnergy(i) = relPeaksEnergy(i)/10;
-        end
-        peaksRelE(i) = peaksE(i)/signalE(i);
-        if((peaksRelE(i))<relPeaksEnergy(i))
-            continue;
-        end
-        
-        peaks(i).value = getPeaks(signals(i,:), 'corr', pInd(i).value, [],[], config);
-        peaksE(i) = getPeaksEnergy(signals(i,:), peaks(i).value);
-        peaksRelE(i) = peaksE(i)/signalE(i);
-        %peaksEnergy(ind) = peaksRelE(i);
-        peaksEnergy = [peaksEnergy, peaksRelE(i)];
-        
-        leadsInclude(i) = 1;
-        
     end
 else
     for i = 1:config.nNumOfChs
-        %procSig = signals(i,:).*signals(i,:);
-        pInd(i).value = findPeaks(signals(i,:).*signals(i,:), signals(i,:), minDst, config_par_minPeakHeight, 0, 0, Fs, 1, 0, config);% for now, don't classify
-        
-        peaksRelE(i) = -inf(1);
-        % remove bad 'source' signals
-        if(length(pInd(i).value)<minNumOfPeaks || length(pInd(i).value)>maxNumOfPeaks)
-            continue;
+        if(chnlInclude(i))
+            %procSig = signals(i,:).*signals(i,:);
+            pInd(i).value = findPeaks(signals(i,:).*signals(i,:), signals(i,:), minDst, config_par_minPeakHeight, 0, 0, Fs, 1, 0, config);% for now, don't classify
+            
+            peaksRelE(i) = -inf(1);
+            % remove bad 'source' signals
+            if(length(pInd(i).value)<minNumOfPeaks || length(pInd(i).value)>maxNumOfPeaks)
+                continue;
+            end
+            
+            peaksE(i) = getPeaksEnergy(signals(i,:), pInd(i).value);
+            signalE(i) = getSignalEnergy(signals(i,:));
+            if(peaksE(i)>signalE(i))
+                % the energy of the peaks is larger thatn the energy of the signal
+                % this happens when the QRS's of the peaks overlap
+                peaksOnly = 1;
+                peaksE(i) = getPeaksEnergy(signals(i,:), pInd(i).value, peaksOnly);
+                relPeaksEnergy(i) = relPeaksEnergy(i)/10;
+            end
+            peaksRelE(i) = peaksE(i)/signalE(i);
+            if((peaksRelE(i))<relPeaksEnergy(i))
+                continue;
+            end
+            
+            peaks(i).value = getPeaks(signals(i,:), 'corr', pInd(i).value, [],[], config);
+            peaksE(i) = getPeaksEnergy(signals(i,:), peaks(i).value);
+            peaksRelE(i) = peaksE(i)/signalE(i);
+            %peaksEnergy(ind) = peaksRelE(i);
+            peaksEnergy = [peaksEnergy, peaksRelE(i)];
+            
+            leadsInclude(i) = 1;
+        else
+            pInd(i).value = -1;
+            peaksRelE(i) = -inf(1);
+            leadsInclude(i) = 0;
         end
-        
-        peaksE(i) = getPeaksEnergy(signals(i,:), pInd(i).value);
-        signalE(i) = getSignalEnergy(signals(i,:));
-        if(peaksE(i)>signalE(i))
-            % the energy of the peaks is larger thatn the energy of the signal
-            % this happens when the QRS's of the peaks overlap
-            peaksOnly = 1;
-            peaksE(i) = getPeaksEnergy(signals(i,:), pInd(i).value, peaksOnly);
-            relPeaksEnergy(i) = relPeaksEnergy(i)/10;
-        end
-        peaksRelE(i) = peaksE(i)/signalE(i);
-        if((peaksRelE(i))<relPeaksEnergy(i))
-            continue;
-        end
-        
-        peaks(i).value = getPeaks(signals(i,:), 'corr', pInd(i).value, [],[], config);
-        peaksE(i) = getPeaksEnergy(signals(i,:), peaks(i).value);
-        peaksRelE(i) = peaksE(i)/signalE(i);
-        %peaksEnergy(ind) = peaksRelE(i);
-        peaksEnergy = [peaksEnergy, peaksRelE(i)];
-        
-        leadsInclude(i) = 1;
     end
 end
 
