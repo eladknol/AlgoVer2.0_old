@@ -31,8 +31,8 @@ approach= 'defl';
 
 %% Beat Detection Params
 
-SlowEnvelope=300e-3; %ms
-FastEnvelope=100e-3;  %ms
+SlowEnvelope=250e-3; %ms
+FastEnvelope=0e-3;  %ms
 
 PeakDiscardThresh=0.05;
 GMMRegularizationValue=1e-4; %Regularization Value for GMM training
