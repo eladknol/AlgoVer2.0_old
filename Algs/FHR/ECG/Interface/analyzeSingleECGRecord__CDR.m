@@ -25,9 +25,10 @@ function [exitFlag, outData] = analyzeSingleECGRecord__CDR(fileCont, exitFlag)
 % <<C:\Users\Admin\Google_Drive\Rnd\Documents\Algorithms\Architecture\ECG\Modules\res\DepAnalysis\ForMatlabPub\analyzeSingleECGRecord.PNG>>
 %
 
+
 %% Input checking and initiating
 % Check the inputs and the configuration :: $CDRV_RMV
-exitFlag = -1; % exit code
+exitFlag = -1; % exit code, keep it like that for the coder
 
 %% Coder extensions
 % :: $CDRV_RMV
