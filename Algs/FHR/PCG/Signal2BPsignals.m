@@ -32,7 +32,7 @@ end
 N=length(BP);
 for fl=1:N
    SignalStruct(fl).filtsignal=filtfilt(BP{fl},Signal);
-%    [SignalStruct(fl).filtsignal_N,SignalStruct(fl).Nb,SignalStruct(fl).Na] =NathanFilter(Signal,FBCutoffFrequency1(fl),FBCutoffFrequency2(fl),Fs);
+%    [SignalStruct(fl).filtsignal,SignalStruct(fl).Nb,SignalStruct(fl).Na] =NathanFilter(Signal,FBCutoffFrequency1(fl),FBCutoffFrequency2(fl),Fs);
    SignalStruct(fl).SigName='Filtered';
    SignalStruct(fl).BandPass=[FBCutoffFrequency1(fl),FBCutoffFrequency2(fl)];
    SignalStruct(fl).Fs=Fs;
