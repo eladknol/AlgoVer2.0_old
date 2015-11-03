@@ -1,4 +1,4 @@
-function closestSensor = analyzeEnergy(signals, inConfig) %#codegen
+function [closestSensor, channelInclude] = analyzeEnergy(signals, inConfig) %#codegen
 %#codegen
 
 % #CODER_REMOVE
@@ -42,6 +42,9 @@ config.minDist = floor(length(signals(1,:))/maxNumOfPredPeaks/2); % minDist = 15
 [~, signals] = applyFilter('HIGH_BUTTER', signals, config);
 
 RMS = rms(signals');
+
+% Check the energy of each signal 
+channelInclude = (RMS > 0.01) & (~(RMS/sum(RMS)) < 0.01); % Absolute and Relative
 
 % Variables initiation
 peaks = zeros(1, nNumOfSigs);

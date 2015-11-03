@@ -150,6 +150,7 @@ if(~any(chnlInclude))
     error('ASF:ID', getErrorString(ERROR_CODES.ECG.EXAMINE_DATA));
     return;
 end
+filtECGData = examData;
 
 % Apply additional filters for maternal QRS detection
 filtersConfig.auto_filt.ecg.low.active = false(1);
@@ -202,7 +203,7 @@ mQRS.mQRS_struct = mQRS_struct;
 STEP_ID = STEP_ID+1;
 exitFlag = STEP_ID;
 
-removeStruct = doRemove(filtECGData, mQRS_struct);
+removeStruct = doRemove(filtECGData, mQRS_struct, chnlInclude);
 removeStruct.metaData = metaData;
 
 %% (7) Perform Fetal ECG pre-processing
