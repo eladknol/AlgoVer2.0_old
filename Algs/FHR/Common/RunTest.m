@@ -21,6 +21,7 @@ switch exten
       load  DemoInputStruct
       load(fullfile(PathName,filename));
       inputStruct.data=data;
+      inputStruct.meta.satLevel=10;
 end
 
-[OutStruct,AudioOut,ECGOut]=LongDetection(inputStruct,[],1);
+[OutStruct,AudioOut,ECGOut]=LongDetection(inputStruct,5,1);

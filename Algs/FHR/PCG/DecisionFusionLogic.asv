@@ -39,11 +39,10 @@ if DetectionType ==1
 %     [res, secOut, outStructECG] = analyzeSingleECGRecord(inputStruct); % Get detection from ECG
 inputStructECG=inputStruct;
 if diff(size(inputStruct.data))<0
-    inputStructECG.data=inputStructECG.data';
-end
+    inputStructECG.data
     
 % inputStructECG.data=inputStructECG.data';
-[res, secOut, outStructECG] = analyzeFECGInterval(inputStructECG);
+[res, secOut, outStructECG] = analyzeFECGInterval(inputStruct);
     
 if res ~= -1
     % Channel=secOut.fQRS_struct.bestLeadPeaks;
