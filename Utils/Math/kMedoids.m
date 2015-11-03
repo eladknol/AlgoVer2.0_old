@@ -4,6 +4,7 @@ function [groups, C] = kMedoids(vec, nG, nReps, builtin)
 
 % Batch for AWS 
 global AWSFLAG;
+AWSFLAG = 1;
 if(isempty(AWSFLAG))
     AWSFLAG = false(1);
 end

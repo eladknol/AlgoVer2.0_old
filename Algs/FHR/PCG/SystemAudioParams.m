@@ -13,10 +13,10 @@ FilterOrder=200;
 
 
 
-FBCutoffFrequency1=[  10  10  20  20  25  25  25  30  30  40  40  55  55 20] ;
-FBCutoffFrequency2=[  30  45  40  50  50  55  65  55  65  65  75  80  95 80 ];
-% FBCutoffFrequency1=[  10    25    55   15] ;
-% FBCutoffFrequency2=[  45    65    95   80 ];
+% FBCutoffFrequency1=[  10  10  20  20  25  25  25  30  30  40  40  55  55 20] ;
+% FBCutoffFrequency2=[  30  45  40  50  50  55  65  55  65  65  75  80  95 80 ];
+FBCutoffFrequency1=[  10    25    55   15] ;
+FBCutoffFrequency2=[  45    65    95   80 ];
 
 
 

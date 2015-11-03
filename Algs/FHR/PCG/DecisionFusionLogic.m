@@ -44,7 +44,10 @@ end
     
 % inputStructECG.data=inputStructECG.data';
 [res, secOut, outStructECG] = analyzeFECGInterval(inputStructECG);
-    
+
+if(res==-1)
+    disp('ECG Error.');
+end
 if res ~= -1
     % Channel=secOut.fQRS_struct.bestLeadPeaks;
     % ECGOut.FetSig=secOut.removeStruct.fetData(Channel,:);
