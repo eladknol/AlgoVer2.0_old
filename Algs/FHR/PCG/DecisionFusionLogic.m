@@ -46,7 +46,9 @@ end
 [res, secOut, outStructECG] = analyzeFECGInterval(inputStructECG);
 
 if(res==-1)
-    disp('ECG Error.');
+    disp('ECG::Error');
+else
+    disp('ECG::OK');
 end
 if res ~= -1
     % Channel=secOut.fQRS_struct.bestLeadPeaks;
