@@ -20,7 +20,7 @@ FBCutoffFrequency2=[  30  45  40  50  50  55  65  55  65  65  75  80  95 80 ];
 
 
 
-UseICA=true;
+UseICA=false;
 % Audio smaple rate should be availble 
 
 %% ICA parameters
