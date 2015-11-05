@@ -22,8 +22,8 @@ if ~isfield(inputStruct,'meta')
     error('No meta data availble, check inputStruct');
 elseif ~isfield(inputStruct, 'data')
     error('No data availble, check inputStuct');
-% else
-%     inputStruct.meta.satLevel = 10;
+    % else
+    %     inputStruct.meta.satLevel = 10;
 end
 
 Fs=inputStruct.meta.Samplerate;
@@ -34,24 +34,26 @@ outStruct.gestAge=inputStruct.meta.Weekofpregnancy;
 outStruct.patID=inputStruct.meta.SubjectID;
 outStruct.unqID='thisistheunqfileiddd';
 outStruct.resData=struct;
+FetalECGexist=true;
+
 if DetectionType ==1
     
-%     [res, secOut, outStructECG] = analyzeSingleECGRecord(inputStruct); % Get detection from ECG
-inputStructECG=inputStruct;
-if diff(size(inputStruct.data))<0
-    inputStructECG.data=inputStructECG.data';
-end
+    %     [res, secOut, outStructECG] = analyzeSingleECGRecord(inputStruct); % Get detection from ECG
+    inputStructECG=inputStruct;
+    if diff(size(inputStruct.data))<0
+        inputStructECG.data=inputStructECG.data';
+    end
     
-% inputStructECG.data=inputStructECG.data';
-[res, secOut, outStructECG] = analyzeFECGInterval(inputStructECG);
+    % inputStructECG.data=inputStructECG.data';
+    [res, secOut, outStructECG] = analyzeFECGInterval(inputStructECG);
     
-if res ~= -1
-    % Channel=secOut.fQRS_struct.bestLeadPeaks;
-    % ECGOut.FetSig=secOut.removeStruct.fetData(Channel,:);
-    ECGOut.FetSig=secOut.fQRS_struct.fetSignal;
-else
-    ECGOut.FetSig=999;
-end
+    if res ~= -1
+        % Channel=secOut.fQRS_struct.bestLeadPeaks;
+        % ECGOut.FetSig=secOut.removeStruct.fetData(Channel,:);
+        ECGOut.FetSig=secOut.fQRS_struct.fetSignal;
+    else
+        ECGOut.FetSig=999;
+    end
 else
     outStructECG=[];
     ECGOut.FetSig=999;
@@ -59,6 +61,9 @@ end
 
 if ~isempty(outStructECG)
     outStruct=structCopy(outStructECG, outStruct);
+    if outStruct.resData.ECG_globalScore==909
+        FetalECGexist=false;
+    end
 end
 
 
@@ -100,7 +105,7 @@ outStruct.resData.Fetal_Audio_Score=Audio_Score.score;
 outStruct.resData.Maternal_Audio_Score=Audio_Score.score;
 
 %% Decision logic
-if outStruct.resData.Fetal_ECG_Score<outStruct.resData.Fetal_Audio_Score % Check which modality is better
+if outStruct.resData.Fetal_ECG_Score<outStruct.resData.Fetal_Audio_Score && FetalECGexist% Check which modality is better
     
     %     out.SelectedPos=Out.resData.ECG_fQRSPos;
     outStruct.resData.Fetal_Final_Modality='ECG';

@@ -20,8 +20,15 @@ switch exten
     case '.mat'
       load  DemoInputStruct
       load(fullfile(PathName,filename));
+      
+      if diff(size(data))>0
+          data=data';
+      end
       inputStruct.data=data;
-      inputStruct.meta.satLevel=10;
+      
+      inputStruct.meta.satLevel=2^23;
+      inputStruct.meta.Samplerate=1000;
+      
 end
 
-[OutStruct,AudioOut,ECGOut]=LongDetection(inputStruct,5,1);
+[OutStruct,AudioOut,ECGOut]=LongDetection(inputStruct,[],1);

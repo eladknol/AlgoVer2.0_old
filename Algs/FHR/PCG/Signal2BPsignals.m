@@ -11,8 +11,8 @@ end
 
 for k=1:length(FBCutoffFrequency1)
 
-%     BP{k} = designfilt('bandpassfir','FilterOrder',100,'CutoffFrequency1',FBCutoffFrequency1(k),'CutoffFrequency2',FBCutoffFrequency2(k),'SampleRate',Fs);
-    BP{k} = designfilt('bandpassiir','FilterOrder',10,'HalfPowerFrequency1',FBCutoffFrequency1(k),'HalfPowerFrequency2',FBCutoffFrequency2(k),  'SampleRate',Fs);
+    BP{k} = designfilt('bandpassfir','FilterOrder',100,'CutoffFrequency1',FBCutoffFrequency1(k),'CutoffFrequency2',FBCutoffFrequency2(k),'SampleRate',Fs);
+%     BP{k} = designfilt('bandpassiir','FilterOrder',10,'HalfPowerFrequency1',FBCutoffFrequency1(k),'HalfPowerFrequency2',FBCutoffFrequency2(k),  'SampleRate',Fs);
     
     
     
@@ -31,8 +31,8 @@ for k=1:length(FBCutoffFrequency1)
 end
 N=length(BP);
 for fl=1:N
-   SignalStruct(fl).filtsignal=filtfilt(BP{fl},Signal);
-%    [SignalStruct(fl).filtsignal,SignalStruct(fl).Nb,SignalStruct(fl).Na] =NathanFilter(Signal,FBCutoffFrequency1(fl),FBCutoffFrequency2(fl),Fs);
+%    SignalStruct(fl).filtsignal=filtfilt(BP{fl},Signal);
+   [SignalStruct(fl).filtsignal,SignalStruct(fl).Nb,SignalStruct(fl).Na] =NathanFilter(Signal,FBCutoffFrequency1(fl),FBCutoffFrequency2(fl),Fs);
    SignalStruct(fl).SigName='Filtered';
    SignalStruct(fl).BandPass=[FBCutoffFrequency1(fl),FBCutoffFrequency2(fl)];
    SignalStruct(fl).Fs=Fs;

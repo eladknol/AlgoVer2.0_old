@@ -8,7 +8,7 @@ else
 end
 
 NumOfFiles=length(FileList);
-OutPutDir='C:\Users\Administrator\Google Drive\Nuvo\Database\V2Run\Run041115';
+OutPutDir='C:\Users\Administrator\Google Drive\Nuvo\Database\V2Run\Run051115_IIR3n';
 
 for k=1:NumOfFiles
     fnam=FileList{k};
