@@ -3,8 +3,6 @@ function fQRS_struct_res = getFetalQRSPos(fetDetectorStruct)
 %% #pragmas
 %#codegen
 
-% This is a dummy comment to test git-whatever 
-% This is a dummy comment to test git-whatever - line 2
 %% Coder directives
 coder.extrinsic('warning')
 
@@ -17,24 +15,33 @@ coder.extrinsic('warning')
 % [R_Waves_FNL, RelValidSigs.FNL, bestLead, bestLeadPeaks, leadsInclude]= getRWaves(fetSignal, '2nd', config, procSig);
 % Use all of the channels for fQRS detection
 
-coder.varsize('fetSignal'           , [6 120000 ], [1 1]);  % #CODER_VARSIZE
-R_Waves_FNL = repmat(struct('value', 0), 6, 1);
-
+coder.varsize('fetSignal'           , [6 120000 ], [1 1]); % #CODER_VARSIZE
 coder.varsize('R_Waves_FNL'         , [6 1      ], [1 0]); % #CODER_VARSIZE % This is related to the maximun allowed size of the data
 coder.varsize('R_Waves_FNL(:).value', [1000 1   ], [1 0]); % #CODER_VARSIZE % This is related to the maximun allowed size of the data
 
+R_Waves_FNL = repmat(struct('value', 0), 6, 1);
 config = fetDetectorStruct.config;
 config.skipBPS = 0;
-fetSignal = preProcFetalData(fetDetectorStruct.removeStruct, 'raw', config);
+
+% Take only the 1st signal and try to perform detection using only it
+% fetSignal = preProcFetalData(fetDetectorStruct.removeStruct.fetData, 'raw_1st', config);
+% procSig = getFetalSignal2ndTry(fetSignal, fetDetectorStruct.config);
+% config.nNumOfChs = 1;
+% [R_Waves_FNL, RelValidSigs.FNL, bestLead, bestLeadPeaks, leadsInclude]= findFetRWaves(fetSignal, config, procSig);
+
+% Use all of the channels for fQRS detection
+
+% Pre-processing stage
+fetSignal = preProcFetalData(fetDetectorStruct.removeStruct.fetData, 'raw', config);
 [procSig, newSignals, bestPreProcLead, dataTypeProc] = getFetalSignal2ndTry(fetSignal, fetDetectorStruct.config, 1);
-warning('use the xcorr of procSig ');
-%STD = analyzeAMCorr(procSig)
 if(strcmpi(dataTypeProc, 'bestOnly'))
     procSig = procSig(bestPreProcLead, :);
     fetSignal = newSignals(bestPreProcLead, :);
 end
-
 config.nNumOfChs = min(size(fetSignal)); % to take into account the reduction in the dimentions of the data
+
+% warning('use the xcorr of procSig ');
+% STD = analyzeAMCorr(procSig)
 
 % [R_Waves_FNL, RelValidSigs.FNL, bestLead, bestLeadPeaks, leadsInclude]= getRWaves(fetSignal, '2nd', config, procSig);
 [R_Waves_FNL, RelValidSigs.FNL, bestLead, bestLeadPeaks, leadsInclude]= findFetRWaves(fetSignal, config, procSig);

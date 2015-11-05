@@ -215,12 +215,12 @@ removeStruct.metaData = metaData;
 %
 % <<C:\Users\Admin\Google_Drive\Rnd\Documents\Algorithms\Architecture\ECG\Modules\res\DepAnalysis\ForMatlabPub\preProcFetalData.PNG>>
 %
-STEP_ID = STEP_ID+1;
-exitFlag = STEP_ID;
+% STEP_ID = STEP_ID+1;
+% exitFlag = STEP_ID;
 
-config = configProvider.ECG_CFG.fECG;
-[fetSignal, fetECGData, bestFetLead] = preProcFetalData(removeStruct, 'ica', config);
-chnlInclude = true(1, min(size(fetSignal)));
+% config = configProvider.ECG_CFG.fECG;
+% [fetSignal, fetECGData, bestFetLead] = preProcFetalData(removeStruct, 'ica', config);
+% chnlInclude = true(1, min(size(fetSignal)));
 
 
 %% (8) Perform Fetal QRS detection
@@ -237,7 +237,7 @@ STEP_ID = STEP_ID+1;
 exitFlag = STEP_ID;
 
 configProvider.ECG_CFG.general.procType = getProcType('fetal');
-fQRS_struct = doDetectFetal(fetSignal, chnlInclude, mQRS_struct, bestFetLead, removeStruct);
+fQRS_struct = doDetectFetal(mQRS_struct, removeStruct);
 
 if(~isempty(configProvider))
     configProvider = struct();

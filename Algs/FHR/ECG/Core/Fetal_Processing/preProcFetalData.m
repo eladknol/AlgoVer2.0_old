@@ -1,4 +1,4 @@
-function [fetSignal, fetECGData, bestLead] = preProcFetalData(removeStruct, procType, config)
+function [fetSignal, fetECGData, bestLead] = preProcFetalData(fetData, procType, config)
 %#codegen
 
 %% temp
@@ -7,7 +7,6 @@ coder.varsize('fetSignal'   , [6 120000     ], [1 1]); % #CODER_VARSIZE
 coder.varsize('fetECGData'  , [6 120000     ], [1 1]); % #CODER_VARSIZE
 coder.varsize('cor'         , [6 120000*2   ], [1 1]); % #CODER_VARSIZE
 
-fetData = removeStruct.fetData;
 fetSignal = fetData;
 
 %%
