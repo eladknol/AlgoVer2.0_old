@@ -30,7 +30,7 @@ ecg_cfg.filters.high.fc = 2;
 ecg_cfg.filters.high.order = 5;
 % MA filter
 ecg_cfg.filters.ma.active = true(1);
-ecg_cfg.filters.ma.len = round(501/1000 * sampleRate);
+ecg_cfg.filters.ma.len = round(201/1000 * sampleRate);
 % Median filter
 ecg_cfg.filters.median.active = false(1);
 ecg_cfg.filters.median.len = round(100/1000 * sampleRate);

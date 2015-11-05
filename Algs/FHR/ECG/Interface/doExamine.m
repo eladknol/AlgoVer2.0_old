@@ -60,7 +60,9 @@ switch(dataType)
         filtData(nanExclude, :) = nan; % remove NaN channels
         chnlInclude = ~nanExclude;
         if(any(chnlInclude))
-            closestElectrode = analyzeEnergy(filtData, localConfig);
+            [closestElectrode, incld] = analyzeEnergy(filtData, localConfig);
+            chnlInclude = chnlInclude & incld;
+            filtData(~chnlInclude, :) = nan; % remove NaN channels
         else
             closestElectrode = -1;
         end
