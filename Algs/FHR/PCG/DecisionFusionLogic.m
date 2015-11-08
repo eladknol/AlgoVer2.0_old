@@ -44,24 +44,32 @@ if DetectionType ==1
         inputStructECG.data=inputStructECG.data';
     end
     
+    
     % inputStructECG.data=inputStructECG.data';
     [res, secOut, outStructECG] = analyzeFECGInterval(inputStructECG);
     
+    % if(res==-1)
+    %     disp('ECG::Error');
+    % else
+    %     disp('ECG::OK');
+    % end
     if res ~= -1
         % Channel=secOut.fQRS_struct.bestLeadPeaks;
         % ECGOut.FetSig=secOut.removeStruct.fetData(Channel,:);
+        disp('ECG::OK');
         ECGOut.FetSig=secOut.fQRS_struct.fetSignal;
     else
-        ECGOut.FetSig=999;
+        disp('ECG::Error');
+        ECGOut.FetSig=[];
     end
 else
     outStructECG=[];
-    ECGOut.FetSig=999;
+    ECGOut.FetSig=[];
 end
 
 if ~isempty(outStructECG)
     outStruct=structCopy(outStructECG, outStruct);
-    if outStruct.resData.ECG_globalScore==909
+    if outStruct.resData.ECG_globalScore==909  %check validity of fecg detection
         FetalECGexist=false;
     end
 end

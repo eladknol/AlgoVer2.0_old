@@ -31,4 +31,4 @@ switch exten
       
 end
 
-[OutStruct,AudioOut,ECGOut]=LongDetection(inputStruct,[],1);
+[OutStruct,AudioOut,ECGOut]=LongDetection(inputStruct,3,1);

@@ -8,9 +8,11 @@ else
 end
 
 NumOfFiles=length(FileList);
-OutPutDir='C:\Users\Administrator\Google Drive\Nuvo\Database\V2Run\Run051115_IIR3n';
 
-for k=1:NumOfFiles
+OutPutDir='C:\Users\Administrator\Google Drive\Nuvo\Database\V2Run\Run051115_IIR3';
+
+
+for k=1:1 %NumOfFiles
     fnam=FileList{k};
     out(k).FileName=fnam;
     [pathstr,name,ext]=fileparts(fnam);
@@ -26,6 +28,9 @@ for k=1:NumOfFiles
     if out(k).ReadSucc
         try
         [inputStruct.meta,inputStruct.data]=ReadNGF(tempFilePath);
+        if ~isfield(inputStruct.meta, 'satLevel')
+            inputStruct.meta.satLevel=10;
+        end
         [OutStruct,Audio,ECG]=LongDetection(inputStruct,[],1);
         
         [out(k).WriteSucc,out(k).Resfname]=writeNGO(DestFname,OutStruct);

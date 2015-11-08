@@ -57,47 +57,47 @@ for k=1:length(Signals) %loop on all channels
         % <<C:\Users\Admin\Google Drive\Nuvo\code\documantation\BeatComplexAudioDetection.png>>
         %
         if n<=size(Sig,2)
-        try
-            tmp=BeatComplexAudioDetection(Sig(:,n),Fs);% Detect Audio complexes
-            tmp.Signal=Sig(:,n);
-            tmp.Fs=Fs;
-            Res{k,n}=tmp; % k: signal number in list, n: Channel Selected
-        catch
-            Res{k,n}=struct;
-        end
-        channel(k,n)=n;
+            try
+                tmp=BeatComplexAudioDetection(Sig(:,n),Fs);% Detect Audio complexes
+                tmp.Signal=Sig(:,n);
+                tmp.Fs=Fs;
+                Res{k,n}=tmp; % k: signal number in list, n: Channel Selected
+            catch
+                Res{k,n}=struct;
+            end
+            channel(k,n)=n;
             SignalNo(k,n)=k;
-        %% RR estimation and Calc Score
-        % Estimate the average RR from the beat complexes detected and
-        % calculate score for goodness of detection
-        %%
-        %
-        % <<C:\Users\Admin\Google Drive\Nuvo\code\documantation\RRestimationAndCalcScore.png>>
-
-
-        %
-        
-
-        try
-            [RRestim(k,n),Score(k,n),BaseLine{k,n}]=RRestimationAndCalcScore('Locations',Res{k,n}.Locs,'Fs', Fs ); %Estimate  avarage RR and score for the whole signal
-        catch
-            RRestim(k,n)=-1;
+            %% RR estimation and Calc Score
+            % Estimate the average RR from the beat complexes detected and
+            % calculate score for goodness of detection
+            %%
+            %
+            % <<C:\Users\Admin\Google Drive\Nuvo\code\documantation\RRestimationAndCalcScore.png>>
             
-            Score(k,n).MeanfromRR=[999];
-            Score(k,n).STDfromRR=[999];
-            Score(k,n).OverbyMoreThen15per=[999];
-            Score(k,n).score=[999];
-            Score(k,n).NumOfOutliers=NaN;
-        end
-        try
-
-            ScoreGrph(k,n)  = ScoreGraph(Res{k,n}.Locs, 'Fs',Fs );% Estimate score as function of time
-
-        catch
-            %             ScoreGrph(k,n)=[];
-        end
+            
+            %
+            
+            
+            try
+                [RRestim(k,n),Score(k,n),BaseLine{k,n}]=RRestimationAndCalcScore('Locations',Res{k,n}.Locs,'Fs', Fs ); %Estimate  avarage RR and score for the whole signal
+            catch
+                RRestim(k,n)=-1;
+                
+                Score(k,n).MeanfromRR=[999];
+                Score(k,n).STDfromRR=[999];
+                Score(k,n).OverbyMoreThen15per=[999];
+                Score(k,n).score=[999];
+                Score(k,n).NumOfOutliers=NaN;
+            end
+            try
+                
+                ScoreGrph(k,n)  = ScoreGraph(Res{k,n}.Locs, 'Fs',Fs );% Estimate score as function of time
+                
+            catch
+                %             ScoreGrph(k,n)=[];
+            end
         else
-         RRestim(k,n)=-1;
+            RRestim(k,n)=-1;
             
             Score(k,n).MeanfromRR=[999];
             Score(k,n).STDfromRR=[999];

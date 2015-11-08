@@ -287,6 +287,10 @@ if isnumeric(hdr.Device_ID)
 else
     hdr.DeviceID=hdr.Device_ID;
 end
+if isfield(hdr,'Saturation')
+    hdr.satLevel=hdr.Saturation;
+    hdr=rmfield(hdr,'Saturation');
+end
 hdr=rmfield(hdr,'User_ID');
 hdr=rmfield(hdr,'Sample_Rate');
 hdr=rmfield(hdr,'BMI');
