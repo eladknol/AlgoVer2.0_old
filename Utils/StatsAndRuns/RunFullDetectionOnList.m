@@ -10,7 +10,7 @@ end
 NumOfFiles=length(FileList);
 
 OutPutDir='C:\Users\Administrator\Google Drive\Nuvo\Database\V2Run\Run051115_IIR3';
-
+WriteRunParams(OutPutDir);
 
 for k=1:1 %NumOfFiles
     fnam=FileList{k};
