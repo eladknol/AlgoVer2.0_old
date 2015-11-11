@@ -37,4 +37,12 @@ else
     save('notchBsFilt.mat', 'notchBsFilt');
 end
 notchBsFilt_global = notchBsFilt;
-filtSig = filtfilt(notchBsFilt, signal);
+try
+    filtSig = filtfilt(notchBsFilt, signal);
+catch
+    delete('notchBsFilt.mat');
+    notchBsFilt = designfilt('bandstopiir', 'FilterOrder', inConfig.Order, ...
+        'HalfPowerFrequency1', inConfig.Fc(1), 'HalfPowerFrequency2', inConfig.Fc(2), ...
+        'SampleRate', inConfig.Fs);
+    filtSig = filtfilt(notchBsFilt, signal);
+end
