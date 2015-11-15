@@ -28,6 +28,7 @@ for i=1:length(acq_folder)
             try
             acq = load_acq(acq_fn);
             data=acq.data;
+            isi_val=acq.hdr.graph.sample_time;
             catch
                 data=[];
             end            
@@ -35,11 +36,11 @@ for i=1:length(acq_folder)
                 v7 = version;
                 if str2num(v7(1))<7
                     count=count+1;
-                    S=struct('data',data,'isi',1,'isi_units','ms');
+                    S=struct('data',data,'isi',isi_val,'isi_units','ms');
                     save(mat_fn,'-struct','S');
                 else
                     count=count+1;
-                    S=struct('data',data,'isi',1,'isi_units','ms');
+                    S=struct('data',data,'isi',isi_val,'isi_units','ms');
                     save(mat_fn, '-V6','-struct','S');
                 end
             end
