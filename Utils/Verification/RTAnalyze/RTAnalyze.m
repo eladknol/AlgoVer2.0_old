@@ -68,7 +68,6 @@ set(handles.figure1,'Position',[54.8571   11.6471  149.0000   32.0588]);
 set(handles.figure1,'Color',[1 1 1]);
 % params
 handles.deltaT=60;
-handles.Fs=1000;
 handles.LastAnalysisT=[];
 
 % load start and stop buttton images
@@ -180,6 +179,7 @@ while get(hObject,'Value')==1
                 handles.TempacqData.data=[];  % prepare empty struct for data
                 try
                     handles.TempacqData=load_acq_mod(handles.acqFilePath);
+                    handles.Fs=1000/handles.TempacqData.hdr.graph.sample_time;
                 catch ME
                     RTAnalyzeLog(handles,ME);
                 end
@@ -222,6 +222,7 @@ while get(hObject,'Value')==1
                     % create inputs
                     InputStruct=CreateInputStruct;
                     InputStruct.data=handles.acqData.data;
+                    InputStruct.meta.Samplerate=handles.Fs;
                     
                     % save input data to .mat file for debugging
                     if handles.debugFlag
