@@ -9,9 +9,10 @@ function [max_r,r,lag_diff_4_max_r] = CalcDetectionXcorr(comb_1,comb_2,max_lag,d
 %           lag_diff_4_max_r - shift where max value of cross correlation
 %                              is
 
+
 % return if one of the input vectors is empty
-if all(~comb_1)|| all(~comb_2)
-    max_r=[];
+if isempty(comb_1) || isempty(comb_2)
+    max_r=1;
     r=[];
     lag_diff_4_max_r=[];
     return;
@@ -19,13 +20,17 @@ end
 
 % calculate cross correlation between 2 vectors
 [r,lags] = xcorr(comb_1,comb_2,max_lag);
+
+% normalize by number of fetal detections
 r=r/sum(comb_1);
 
-% get max and min xcorr value and offset
+% get max,min xcorr value and offset
 [max_r,i_max_r] = max(r);
 [min_r,~] = min(r);
+lag_diff_4_max_r=lags(i_max_r);
+
+% set max value as max-min
 max_r=max_r-min_r;
-lag_diff_4_max_r= lags(i_max_r);
 
 % plot
 if debug  
