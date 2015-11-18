@@ -9,17 +9,38 @@ win_size=50;% [msec]
 win_size=(Fs/1000)*win_size; % [samples]
 a=1;b=ones(1,win_size);
 
-max_lag=250; % [msec]
+max_lag=350; % [msec]
 max_lag=(Fs/1000)*max_lag;
 
 N_Samples=resData.EndSample-resData.StartSample+1;
 
 % Create combs for detection position vectors
-f_E_comb=zeros(1,N_Samples);f_E_comb(resData.ECG_fQRSPos)=1; f_E_comb_rect=filter(b,a,f_E_comb);
-m_E_comb=zeros(1,N_Samples);m_E_comb(resData.ECG_mQRSPos)=1; m_E_comb_rect=filter(b,a,m_E_comb);
+if ~isfield(resData,'ECG_fQRSPos')||(isempty(resData.ECG_fQRSPos))
+    f_E_comb_rect=[];
+else
+    f_E_comb=zeros(1,N_Samples);f_E_comb(resData.ECG_fQRSPos)=1; f_E_comb_rect=filter(b,a,f_E_comb);
+end
 
-f_A_comb=zeros(1,N_Samples);f_A_comb(resData.Audio_fSPos)=1; f_A_comb_rect=filter(b,a,f_A_comb);
-m_A_comb=zeros(1,N_Samples);m_A_comb(resData.Audio_mSPos)=1; m_A_comb_rect=filter(b,a,m_A_comb);
+if ~isfield(resData,'ECG_mQRSPos')||(isempty(resData.ECG_mQRSPos))
+    m_E_comb_rect=[];
+else
+    m_E_comb=zeros(1,N_Samples);m_E_comb(resData.ECG_mQRSPos)=1; m_E_comb_rect=filter(b,a,m_E_comb);
+end
+
+
+if ~isfield(resData,'Audio_fSPos')|| isempty(resData.Audio_fSPos)
+    f_A_comb_rect=[];
+else
+    f_A_comb=zeros(1,N_Samples);f_A_comb(resData.Audio_fSPos)=1; f_A_comb_rect=filter(b,a,f_A_comb);
+end
+
+
+if ~isfield(resData,'Audio_mSPos')|| isempty(resData.Audio_mSPos)
+    m_A_comb_rect=[];
+else
+    m_A_comb=zeros(1,N_Samples);m_A_comb(resData.Audio_mSPos)=1; m_A_comb_rect=filter(b,a,m_A_comb);
+end
+
 
 % Calculate xcorrelation max scores between vectors
 [resOut.f_E_m_E_max,resOut.f_E_m_E_xcorr,resOut.f_E_m_E_lag]=CalcDetectionXcorr(f_E_comb_rect,m_E_comb_rect,max_lag,debug);
