@@ -140,7 +140,7 @@ if pum_val_4~=1   % if histograms should be according to a specific parameter
     tit=strrepUS2Space(tit);
     title(tit);
 else
-    barData=horzcat(barData,histc(handles.XData,XTick));
+    barData=histc(handles.XData,XTick);
     bar(XTick,barData);
     tit=['Detection by ' handles.XLabel];
     tit=strrepUS2Space(tit);
