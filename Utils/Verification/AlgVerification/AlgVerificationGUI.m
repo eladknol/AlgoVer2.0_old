@@ -85,26 +85,19 @@ handles.axes7.Title.String='ECG Raw';handles.axes7.Title.FontSize=7;
 handles.axes8.Title.String='Audio Raw';handles.axes8.Title.FontSize=7;
 
 % Labels
-% handles.axes1.XLabel.String='Time [sec]'; handles.axes1.XLabel.FontSize=7;
 handles.axes1.YLabel.String='Amp [v]';handles.axes1.YLabel.FontSize=7;
-% handles.axes2.XLabel.String='Time [sec]';handles.axes2.XLabel.FontSize=7;
 handles.axes2.YLabel.String='Amp [v]';handles.axes2.YLabel.FontSize=7;
-% handles.axes3.XLabel.String='Time [sec]'; handles.axes3.XLabel.FontSize=7;
 handles.axes3.YLabel.String='HR [bpm]';handles.axes3.YLabel.FontSize=7;
-% handles.axes4.XLabel.String='Time [sec]'; handles.axes4.XLabel.FontSize=7;
 handles.axes4.YLabel.String='HR [bpm]';handles.axes4.YLabel.FontSize=7;
-% handles.axes5.XLabel.String='Time [sec]'; handles.axes5.XLabel.FontSize=7;
-% handles.axes6.XLabel.String='Time [sec]';handles.axes6.XLabel.FontSize=7;
-% handles.axes7.XLabel.String='Time [sec]'; handles.axes7.XLabel.FontSize=7;
 handles.axes7.YLabel.String='Amp [v]';handles.axes7.YLabel.FontSize=7;
-% handles.axes8.XLabel.String='Time [sec]';handles.axes8.XLabel.FontSize=7;
 handles.axes8.YLabel.String='Amp [v]';handles.axes8.YLabel.FontSize=7;
 
 % Add menus with Accelerators
-mymenu = uimenu('Parent',handles.figure1,'Label','Hot Keys');
-uimenu('Parent',mymenu,'Label','Zoom','Accelerator','.','Callback',@(src,evt)zoom(handles.figure1,'on'));
-uimenu('Parent',mymenu,'Label','Pan','Accelerator','/','Callback',@(src,evt)pan(handles.figure1,'on'));
-uimenu('Parent',mymenu,'Label','Data Cursor','Accelerator',',','Callback',@(src,evt)datacursormode(handles.figure1,'on'));
+set(handles.figure1,'MenuBar','figure');
+mymenu = uimenu(handles.figure1,'Label','Hot Keys');
+uimenu(mymenu,'Label','Zoom','Accelerator','.','Callback',@(src,evt)zoom(handles.figure1,'on'));
+uimenu(mymenu,'Label','Pan','Accelerator','/','Callback',@(src,evt)pan(handles.figure1,'on'));
+uimenu(mymenu,'Label','Data Cursor','Accelerator',',','Callback',@(src,evt)datacursormode(handles.figure1,'on'));
 
 set(handles.edit20,'String',handles.med_win_size);
 set(handles.figure1,'WindowStyle','normal');
