@@ -22,7 +22,7 @@ function varargout = RTAnalyze(varargin)
 
 % Edit the above text to modify the response to help RTAnalyze
 
-% Last Modified by GUIDE v2.5 21-Sep-2015 15:11:45
+% Last Modified by GUIDE v2.5 17-Nov-2015 09:05:27
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -465,3 +465,10 @@ function pushbutton4_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 RTAnalyzeDispRTdebug(handles.debugDir);
+
+
+% --- Executes during object creation, after setting all properties.
+function pushbutton4_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to pushbutton4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called

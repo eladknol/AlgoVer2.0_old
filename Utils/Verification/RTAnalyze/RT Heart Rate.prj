@@ -1,0 +1,219 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="825582638" file="C:\Users\Elad\Documents\GitHub\AlgoVer2.0\Utils\Verification\RTAnalyze\RT Heart Rate.prj" location="C:\Users\Elad\Documents\GitHub\AlgoVer2.0\Utils\Verification\RTAnalyze" name="RT Heart Rate" target="target.mlapps" target-name="Package App">
+    <param.appname>RT Heart Rate</param.appname>
+    <param.authnamewatermark>Elad Knoll</param.authnamewatermark>
+    <param.email />
+    <param.company />
+    <param.icon />
+    <param.icons />
+    <param.summary>Real Time heart rate analysis from biopac</param.summary>
+    <param.description>1. New algo code V2.
+2. Added support for generic sampling rate.</param.description>
+    <param.screenshot />
+    <param.version>2.2</param.version>
+    <param.products.name>
+      <item>MATLAB</item>
+      <item>Signal Processing Toolbox</item>
+      <item>Statistics and Machine Learning Toolbox</item>
+      <item>Wavelet Toolbox</item>
+      <item>Parallel Computing Toolbox</item>
+      <item>MATLAB Distributed Computing Server</item>
+    </param.products.name>
+    <param.products.id>
+      <item>'1'</item>
+      <item>'8'</item>
+      <item>'19'</item>
+      <item>'35'</item>
+      <item>'80'</item>
+      <item>'94'</item>
+    </param.products.id>
+    <param.products.version>
+      <item>8.5</item>
+      <item>7.0</item>
+      <item>10.0</item>
+      <item>4.14.1</item>
+      <item>6.6</item>
+      <item>6.6</item>
+    </param.products.version>
+    <param.platforms />
+    <param.output>${PROJECT_ROOT}\RT Heart Rate.mlappinstall</param.output>
+    <param.guid>c804efaf-dcd1-4f4f-add8-7e8b5ad4bacb</param.guid>
+    <unset>
+      <param.email />
+      <param.company />
+      <param.icon />
+      <param.icons />
+      <param.screenshot />
+      <param.platforms />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\RTAnalyze.m</file>
+    </fileset.main>
+    <fileset.depfun>
+      <file>${MATLAB_ROOT}\toolbox\local\userpath.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\AmitCode\DecisionAlgoAndDet\BeatComplexAudioDetection.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\AmitCode\DecisionAlgoAndDet\CleanSignalOutlieares.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\AmitCode\DecisionAlgoAndDet\DecisionFusionLogic.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\AmitCode\DecisionAlgoAndDet\FetalMaternalDecision.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\AmitCode\DecisionAlgoAndDet\FineTuneSdetectionV1_1.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\AmitCode\DecisionAlgoAndDet\FirstStageRREstimation.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\AmitCode\DecisionAlgoAndDet\GetAudioDetctions.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\AmitCode\DecisionAlgoAndDet\ICAall.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\AmitCode\DecisionAlgoAndDet\KLdistanceNormal.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\AmitCode\DecisionAlgoAndDet\RRestimationAndCalcScore.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\AmitCode\DecisionAlgoAndDet\ScoreGraph.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\AmitCode\DecisionAlgoAndDet\Signal2BPsignals.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\AmitCode\DecisionAlgoAndDet\SystemAudioParams.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\AmitCode\UTILS\NathanFilter.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\AmitCode\UTILS\ParseArgs.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Elad\getFilesPaths.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Elad\plotshadedonaxes.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\DataManager\Config\ConfigID.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\DataManager\Config\ConfigProvider.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\DataManager\FIO\edfread.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\DataManager\FIO\generateNGO.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\DataManager\FIO\getECGStruct4NGO.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\DataManager\FIO\getFileName.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\DataManager\FIO\getFileUnqIDTemp.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\DataManager\FIO\getNGFBaseDir.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\DataManager\FIO\getNGOBaseDir.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\DataManager\FIO\ReadNGF.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\DataManager\FIO\ReadNGFnew.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\DataManager\FIO\readNGO.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\DataManager\FIO\writeNGO.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\FastICA_25\fastica.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\FastICA_25\fpica.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\FastICA_25\icaplot.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\FastICA_25\pcamat.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\FastICA_25\remmean.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\FastICA_25\whitenv.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Fastmedfilt1d\fastmedfilt1d.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Fastmedfilt1d\fastmedfilt1d_core.mexw64</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\General\checkInput.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\General\getInsTBXs.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\General\runPar.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\autoGC.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\checkNaN.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\checkSaturation.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\corrCoef.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\findClosest.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\kmedoids_ext.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\matVecCorr.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\nanmax.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\nanmean.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\nanmedian.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\nanmin.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\nanrms.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\nansum.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\padArr.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\peak2mean_mex.mexw64</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\rms_real.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\rms_win.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\rms_win_mex.mexw64</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\smooth.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\smooth_fast.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\winAGC.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\winRMS.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Math\xcorr_muha.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\StructOps\structCopy.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\TimeOps\getTimeForSave.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Visualization\f.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Visualization\getErrorCodes.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Visualization\getErrorString.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Common\Utils\Visualization\plotf.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Common\getAlgConstants.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Common\getAllParams.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Common\getParam.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Fetal_Processing\buildFetalTimeSeries.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Fetal_Processing\examinePeaksBlocks.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Fetal_Processing\getFetalSignal2ndTry.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Fetal_Processing\getFetaSigFromICARes.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Fetal_Processing\preProcFetalData.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Fetal_Processing\reDetectPeaks.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Maternal_Processing\adaptECGBeat.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Maternal_Processing\getBeatInterval.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Maternal_Processing\getBeatPos.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Maternal_Processing\getCurrBeatECG.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Maternal_Processing\getCurrBeatInterval.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Maternal_Processing\getECGTemplate.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Maternal_Processing\remMECG.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Peak_Detection\analyzeEnergy.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Peak_Detection\findPeaks.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Peak_Detection\findRWaves.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Peak_Detection\findRWavesDirect.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Peak_Detection\findRWavesPCA.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Peak_Detection\getFetalQRSPos.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Peak_Detection\getMaternalQRSPos.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Peak_Detection\getPeaks.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Peak_Detection\getQRSComplex.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Peak_Detection\getQRSTemplateSize.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Peak_Detection\getRWaves.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Peak_Detection\getTemplate.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Peak_Detection\refinePeaksPos.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Pre_Processing\apply50HzFiltering.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Pre_Processing\apply50HzNotchFiltering.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Pre_Processing\applyFilter.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Pre_Processing\applyNotchFilter.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Pre_Processing\baselineWanderFilter.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Pre_Processing\EMGFilter.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Pre_Processing\estimateNDRemovePwrlinNoise.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Pre_Processing\func_denoise_sw1d_try1.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Pre_Processing\get50HzFilterProps.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Pre_Processing\getBaselineFilterProps.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Pre_Processing\getEMGFilterProps.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Pre_Processing\maFilter.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Pre_Processing\powerLineFilter.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Core\Pre_Processing\subtractMedian.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Interface\analyzeSingleECGRecord.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Interface\doDetect.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Interface\doExamine.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Interface\doFilter.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Interface\doRemove.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Interface\setDetectionConfig.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\fECG\Interface\setEliminationConfig.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer1.0\Muhammad\Vis\Analyzer\temp.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer2.0\Utils\DataManager\Config\getChannelsByType.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer2.0\Utils\DataManager\Config\getECGconfig.m</file>
+      <file>C:\Users\Elad\Documents\GitHub\AlgoVer2.0\Utils\DataManager\Config\getGENconfig.m</file>
+      <file>${PROJECT_ROOT}\acq2matFunc.m</file>
+      <file>${PROJECT_ROOT}\CreateInputStruct.m</file>
+      <file>${PROJECT_ROOT}\load_acq.m</file>
+      <file>${PROJECT_ROOT}\load_acq_mod.m</file>
+      <file>${PROJECT_ROOT}\RTAnalyze.fig</file>
+      <file>${PROJECT_ROOT}\RTAnalyzeAcq2mat.m</file>
+      <file>${PROJECT_ROOT}\RTAnalyzeDispRTdebug.m</file>
+      <file>${PROJECT_ROOT}\RTAnalyzegetCTGData.m</file>
+      <file>${PROJECT_ROOT}\RTAnalyzeLog.m</file>
+    </fileset.depfun>
+    <fileset.resources>
+      <file>${PROJECT_ROOT}\baby.jpg</file>
+      <file>${PROJECT_ROOT}\mom.jpg</file>
+      <file>${PROJECT_ROOT}\startim.jpg</file>
+      <file>${PROJECT_ROOT}\stopim.jpg</file>
+    </fileset.resources>
+    <fileset.package />
+    <build-deliverables>
+      <file location="C:\Users\Elad\Documents\GitHub\AlgoVer2.0\Utils\Verification\RTAnalyze" name="RT Heart Rate.mlappinstall" optional="false">C:\Users\Elad\Documents\GitHub\AlgoVer2.0\Utils\Verification\RTAnalyze\RT Heart Rate.mlappinstall</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2015a</root>
+      <toolboxes />
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>6.1</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
