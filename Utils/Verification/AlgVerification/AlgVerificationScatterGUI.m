@@ -176,11 +176,22 @@ figure;
 if pum_val_3==1  % scatter
     if pum_val_4~=1; % if scattered data should be sorted by color
         handles.SortParamData=cell2matEmpty2Val(handles.data(:,pum_val_4-1),-1);
+        if ischar(handles.SortParamData)
+            handles.SortParamData=handles.data(:,pum_val_4-1);
+            ischar_flag=1;
+        else
+            ischar_flag=0;
+        end
         handles.SortParamUniqueVals=unique(handles.SortParamData);
         for i_val=1:length(handles.SortParamUniqueVals)
-            idx=handles.SortParamData==handles.SortParamUniqueVals(i_val);
+           if ischar_flag
+                idx=strcmp(handles.SortParamData,handles.SortParamUniqueVals{i_val});
+                legendinf{i_val}=handles.SortParamUniqueVals{i_val};
+            else
+                idx=handles.SortParamData==handles.SortParamUniqueVals(i_val);
+                legendinf{i_val}=num2str(handles.SortParamUniqueVals(i_val));
+            end
             scatter(handles.XData(idx),handles.YData(idx),5);hold on;
-            legendinf{i_val}=num2str(handles.SortParamUniqueVals(i_val));
         end;
         tit=[ handles.YLabel '=f(' handles.XLabel '), sorted by ' handles.Headers{pum_val_4}];
         tit=strrepUS2Space(tit);
@@ -198,11 +209,22 @@ else % scatter 3
     handles.ZData=cell2matEmpty2Val(handles.data(:,pum_val_3-1),-1); % get Z data
     if pum_val_4~=1; % if scattered data should be sorted by color
         handles.SortParamData=cell2matEmpty2Val(handles.data(:,pum_val_4-1),-1);
+        if ischar(handles.SortParamData)
+            handles.SortParamData=handles.data(:,pum_val_4-1);
+            ischar_flag=1;
+        else
+            ischar_flag=0;
+        end
         handles.SortParamUniqueVals=unique(handles.SortParamData);
         for i_val=1:length(handles.SortParamUniqueVals)
-            idx=handles.SortParamData==handles.SortParamUniqueVals(i_val);
+            if ischar_flag
+                idx=strcmp(handles.SortParamData,handles.SortParamUniqueVals{i_val});
+                legendinf{i_val}=handles.SortParamUniqueVals{i_val};
+            else
+                idx=handles.SortParamData==handles.SortParamUniqueVals(i_val);
+                legendinf{i_val}=num2str(handles.SortParamUniqueVals(i_val));
+            end
             scatter3(handles.XData(idx),handles.YData(idx),handles.ZData(idx),5);hold on;
-            legendinf{i_val}=num2str(handles.SortParamUniqueVals(i_val));
         end;
         tit=[handles.ZLabel '=f(' handles.XLabel ',' handles.YLabel '), sorted by ' handles.Headers{pum_val_4}];
         tit=strrepUS2Space(tit);
