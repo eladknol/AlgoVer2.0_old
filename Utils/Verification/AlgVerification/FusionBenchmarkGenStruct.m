@@ -1,11 +1,11 @@
-function [ res ] = FusionBenchmarkGenStruct(N_Subjects,ECG_Score_TH,Audio_Score_TH)
+function [ res ] = FusionBenchmarkGenStruct(N_Subjects)
 %FusionBenchmarkGenStruct generates structs to hold individual session performance data
 %and total performace data
 %   Inputs - N_Subjects - number of folders subjects
 %            ECG_Score_TH/Audio_Score_TH - thresholds for ECG and audio
 %                                          interval detection
 %   Outputs - res.TotalPerf and res.IndPerf - structures to hold alg
-%   results
+%             results
 
 res.TotalPerf=struct('Subjects',N_Subjects,'Sessions',0,'Included_Sessions',0,'Excluded_Sessions',0,'ECG_Session_det',0,'Audio_Session_det',0,'Fusion_Session_det',0,'Overlap_Session_det',0,...
     'ECG_Session_Suc',[],'Audio_Session_Suc',[],'Fusion_Session_Suc',[],'Overlap_Session_Suc',[],...
@@ -21,6 +21,6 @@ res.IndPerf(1:N_Subjects)=struct('Subject_Path',[],'NGO_Paths',[],'NGF_Paths',[]
     'ECG_Session_score_vec',[],'Audio_Session_score_vec',[],'Fusion_Session_score_vec',[],...
     'Audio_Interval_score_arr',[],'ECG_Interval_score_arr',[],...
     'ECG_Interval_det_arr',[],'Audio_Interval_det_arr',[],'Fusion_Interval_det_arr',[],'Overlap_Interval_det_arr',[],...
-    'ScoreTH_ECG',ECG_Score_TH,'Score_TH_Audio',Audio_Score_TH,'Gest_Age',[]);
+    'ScoreTH_ECG',[],'Score_TH_Audio',[],'Gest_Age',[]);
 end
 
