@@ -1,4 +1,4 @@
-function FusionBenchmarkGenStats(IndPerf,NGO_Folder_Path,Out_File_Str,FileType)
+function FusionBenchmarkGenStats(IndPerf,Out_Folder_Path,Out_File_Str,FileType)
 % Plot accuracy plots for ECG, Audio and Fusion results
 %   Input - IndPerf  = data for all Included sessions
 %           NGO_Folder_Path - path for outputs
@@ -62,8 +62,8 @@ h_bar(1).FaceColor='k'; h_bar(2).FaceColor='m'; h_bar(3).FaceColor='r'; h_bar(4)
 xlabel('Gestation age [week]');ylabel('# of sessions');
 title(['Fetus HR detection, ' num2str(Total_Valid_Sessions) ' ' FileType]);
 set(gca,'XTick',centers,'XTickLabel',{centers(:)});
-saveas(h1,[NGO_Folder_Path '\' FileType '_BarPlot_' Out_File_Str '.bmp']);
-saveas(h1,[NGO_Folder_Path '\' FileType '_BarPlot_' Out_File_Str '.fig']);
+saveas(h1,[Out_Folder_Path '\' FileType '_BarPlot_' Out_File_Str '.bmp']);
+saveas(h1,[Out_Folder_Path '\' FileType '_BarPlot_' Out_File_Str '.fig']);
 
 % Line and scatter
 h2=figure;plot(centers,data4Plot(1:end-1,7),'--m',centers,data4Plot(1:end-1,8),'--r',centers,data4Plot(1:end-1,9),'--b',centers,data4Plot(1:end-1,10),'--g');hold on;
@@ -77,14 +77,14 @@ scatter(centers,data4Plot(1:end-1,9),Marker_Sizes,'b','f');grid on;
 scatter(centers,data4Plot(1:end-1,10),Marker_Sizes,'g','f','h');grid on;
 
 title(['Fetus HR detection, ' num2str(Total_Valid_Sessions) ' ' FileType]);
-saveas(h2,[NGO_Folder_Path '\' FileType '_Accuracy_' Out_File_Str '.bmp']);
-saveas(h2,[NGO_Folder_Path '\' FileType '_Accuracy_' Out_File_Str '.fig']);
+saveas(h2,[Out_Folder_Path '\' FileType '_Accuracy_' Out_File_Str '.bmp']);
+saveas(h2,[Out_Folder_Path '\' FileType '_Accuracy_' Out_File_Str '.fig']);
 
 % Create data table
 dataTable=array2table(data4Plot,'VariableNames',{'Gestation_Age' 'Valid_Sessions' 'Fusion_detection' 'ECG_detection' 'Audio_detection' 'Overlap_detection' 'Fusion_Perc'	'ECG_Perc' 'Audio_Perc' 'Overlap_Perc'});
 
 % save data table to excel file
-XlsFileName=[NGO_Folder_Path '\' FileType '_results' Out_File_Str '.xlsx'];
+XlsFileName=[Out_Folder_Path '\' FileType '_results' Out_File_Str '.xlsx'];
 writetable(dataTable,XlsFileName);
 winopen(XlsFileName);
 end
