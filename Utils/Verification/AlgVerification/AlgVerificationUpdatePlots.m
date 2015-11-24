@@ -16,6 +16,15 @@ Score_TH=0.2;
 N_Samples=resData.EndSample-resData.StartSample+1;%length(ECGData.FetSig);
 Fs=res.OutStruct.Fs;
 
+if Fs==500
+% design low psss filter for antialising before decimation
+    LpFilt=designfilt('lowpassfir','CutoffFrequency',200,'SampleRate',1000','FilterOrder',100);
+    dsFactor=2;
+    FiltData=filtfilt(LpFilt.Coefficients,1,rawData);
+    FiltData=downsample(FiltData,dsFactor);
+    CompareSpec(rawData,2*Fs,FiltData,Fs);
+    rawData=FiltData;
+end
 % Run ScoreGraph on ECG results here (not good!!!), until NGO file will be updated
 try
     ECGData.Fetal.ScoreGrph=ScoreGraph(resData.ECG_fQRSPos,'GlobScore',resData.Fetal_ECG_Score,'GlobHR',resData.ECG_avgBestFHR,'Fs',Fs);
@@ -83,7 +92,7 @@ Start_smp=res.OutStruct.resData(i_Interval).StartSample;
 End_smp=res.OutStruct.resData(i_Interval).EndSample;
 
 % raw signals
-plot(handles.axes7,Ttag,rawData(Start_smp:End_smp,1:6));grid(handles.axes7,'on');
+plot(handles.axes7,Ttag,rawData(Start_smp:End_smp,1:6));title(handles.axes7,['ECG mHR=' num2str(uint16(resData.ECG_avgMHR))],'FontSize',7);grid(handles.axes7,'on');
 plot(handles.axes8,Ttag,rawData(Start_smp:End_smp,7:10));grid(handles.axes8,'on');
 
 % best fetal ECG channel and QRS detections
