@@ -4,8 +4,8 @@
 crosscorr=1; % flag for calculating crosscorrelation
 copyVVres=0; % flag for copying verification results and comments
 
-PrevFolder='C:\Users\Elad\Desktop\Run091115_FIR100';
-CurrFolder='C:\Users\Elad\Desktop\Run091115_FIR100';
+PrevFolder='C:\Users\Elad\Google Drive\Nuvo Algorithm team\Verification\ICA\Run191115_FIR100_ICA=4';
+CurrFolder='C:\Users\Elad\Google Drive\Nuvo Algorithm team\Verification\ICA\Run191115_FIR100_ICA=4';
 
 FoldersList_1=folderSubFolders(PrevFolder,1,0,'',0); % up to depth 1 folders
 FoldersList_2=folderSubFolders(PrevFolder,2,0,'',0); % uo tp depth 2 folders
@@ -19,9 +19,18 @@ for i_folder=1:length(folderPaths);
         Prev_NGO_file_path=fullfile(folderPaths{i_folder},Prev_NGO_file_names(i_file).name);
         Curr_NGO_file_path=strrep(Prev_NGO_file_path,PrevFolder,CurrFolder);
         
+        try
         [Read_Status_Prev,Prev_NGO_data]=readNGO(Prev_NGO_file_path);
+        catch
+            continue;
+        end
+        
         if exist(Curr_NGO_file_path,'file')==2
+            try
             [Read_Status_Curr,Curr_NGO_data]=readNGO(Curr_NGO_file_path);
+            catch
+                continue;
+            end
         else
             continue;
         end
@@ -58,7 +67,8 @@ for i_folder=1:length(folderPaths);
                         for i_fld=1:length(fldnames)
                             Curr_NGO_data.resData(i_int).(fldnames{i_fld})=FetMatXcorr.(fldnames{i_fld});
                         end
-                    catch
+                    catch ME
+                        disp('fdsfd');
                     end
                 end
             end
