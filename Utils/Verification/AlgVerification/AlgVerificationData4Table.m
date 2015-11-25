@@ -241,7 +241,7 @@ for i_Col=1:N_Cols
             catch
                 rowData{1,i_Col}=[];
             end
-        case 'ECG Score by ECG'
+        case 'ECG Global Score'
             try
                 rowData{1,i_Col}=IndPerf.NGO_Data{i_Session}.resData(i_Interval).ECG_globalScore;
             catch
