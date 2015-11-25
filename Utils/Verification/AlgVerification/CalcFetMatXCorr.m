@@ -4,13 +4,14 @@ function [resOut]=CalcFetMatXCorr(resData,Fs,debug)
 % Inputs: resData - Algorithm output results for one minute
 %         Fs - sampling frequency
 %         debug - flag for plotting debug data
+% Outputs: resOut - structure containing cross correlation data
 
 win_size=50;% [msec]
 win_size=(Fs/1000)*win_size; % [samples]
 a=1;b=ones(1,win_size);
 
 max_lag=350; % [msec]
-max_lag=(Fs/1000)*max_lag;
+max_lag=(Fs/1000)*max_lag; %[samples]
 
 N_Samples=resData.EndSample-resData.StartSample+1;
 
